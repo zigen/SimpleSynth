@@ -3,12 +3,30 @@
 //
 #include "PluginEditor.h"
 #include "PluginProcessor.h"
+#include "DSP/SimpleVoice.h"
+#include "DSP/SimpleSound.h"
 
 PluginProcessor::PluginProcessor() : AudioProcessor() {}
 
 PluginProcessor::~PluginProcessor() {}
 
-void PluginProcessor::prepareToPlay(double sampleRate, int samplePerBlock) {}
+void PluginProcessor::prepareToPlay(double sampleRate, int samplePerBlock) {
+    synth.clearVoices();
+    synth.clearVoices();
+    synth.setCurrentPlaybackSampleRate(sampleRate);
+    BigInteger canPlayNotes;
+    canPlayNotes.setRange(0, 127, true);
+
+    BigInteger canPlayChannels;
+    canPlayChannels.setRange(1, 16, true);
+
+    synth.addSound(new SimpleSound(canPlayNotes, canPlayChannels));
+
+    int numVoices = voiceSizeParameter->get();
+    for (int i = 0; i < numVoices; ++i) {
+        synth.addVoice(new SimpleVoice(&oscParameters, &lfoParameters, &ampEnvParameters, velocitySenseParameter));
+    }
+}
 
 void PluginProcessor::releaseResources() {}
 

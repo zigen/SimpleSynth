@@ -5,6 +5,7 @@
 #ifndef SIMPLESYNTH_PLUGINPROCESSOR_H
 #define SIMPLESYNTH_PLUGINPROCESSOR_H
 
+#include <JuceHeader.h>
 #include <juce_audio_processors/juce_audio_processors.h>
 
 class PluginProcessor : public juce::AudioProcessor {
@@ -50,6 +51,8 @@ public:
     void setStateInformation(const void *data, int sizeInBytes) override;
 
 
+private:
+    juce::Synthesiser synth;
 };
 
 
