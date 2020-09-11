@@ -1,6 +1,1 @@
-target_compile_definitions(SimpleSynth
-        PUBLIC
-        SimpleSynthParameters.cpp
-        WaveForms.cpp
-        SimpleSound.cpp
-        SimpleVoice.cpp)
+target_sources(SimpleSynth PRIVATE SimpleSynthParameters.cpp AmpEnvelope.cpp WaveForms.cpp SimpleSound.cpp SimpleVoice.cpp)

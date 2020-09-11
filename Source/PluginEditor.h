@@ -8,20 +8,21 @@
 #include "PluginProcessor.h"
 
 class PluginEditor : public juce::AudioProcessorEditor {
-public:
-    explicit PluginEditor(PluginProcessor &);
+ public:
+  explicit PluginEditor(PluginProcessor &);
 
-    ~PluginEditor() override;
+  ~PluginEditor() override;
 
-    void paint(juce::Graphics &) override;
+  void paint(juce::Graphics &) override;
 
-    void resized() override;
+  void resized() override;
 
-private:
-    PluginProcessor &processorRef;
+ private:
+  PluginProcessor &processorRef;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PluginEditor)
+  Slider sineWaveLevelSlider;
+
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PluginEditor)
 };
 
-
-#endif //SIMPLESYNTH_PLUGINEDITOR_H
+#endif  // SIMPLESYNTH_PLUGINEDITOR_H

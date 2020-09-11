@@ -8,20 +8,19 @@
 #include <JuceHeader.h>
 
 class WaveForms {
-public:
-    float sine(float angle);
+ public:
+  float sine(float angle);
 
-    float saw(float angle);
+  float saw(float angle);
 
-    float square(float angle);
+  float square(float angle);
 
-    float triangle(float angle);
+  float triangle(float angle);
 
-    float noise();
+  float noise();
 
-private:
-    Random whiteNoise;
+ private:
+  Random whiteNoise;
 };
 
-
-#endif //SIMPLESYNTH_WAVEFORMS_H
+#endif  // SIMPLESYNTH_WAVEFORMS_H
