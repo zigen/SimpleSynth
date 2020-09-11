@@ -117,5 +117,6 @@ target_link_libraries(SimpleSynth PRIVATE
         juce::juce_opengl)
 
 add_subdirectory(DSP)
+add_subdirectory(GUI)
 
 juce_generate_juce_header(SimpleSynth)

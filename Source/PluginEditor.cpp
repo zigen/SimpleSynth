@@ -6,15 +6,35 @@
 
 #include "PluginProcessor.h"
 
-PluginEditor::PluginEditor(PluginProcessor &p) : AudioProcessorEditor(p), processorRef(p) { setSize(500, 400); }
+namespace {
+    const float KEY_HEIGHT = 80.0f;
+    const float KEY_WIDTH = 32.0f;
+    const int PANEL_MARGIN = 2;
+}
 
+
+PluginEditor::PluginEditor(PluginProcessor &p)
+        : AudioProcessorEditor(p), processorRef(p),
+          oscParametersComponent(&p.oscParameters),
+          keyboardComponent(p.getKeyboardState(), MidiKeyboardComponent::Orientation::horizontalKeyboard) {
+    setSize(500, 400);
+    addAndMakeVisible(oscParametersComponent);
+    addAndMakeVisible(keyboardComponent);
+
+}
 PluginEditor::~PluginEditor() {}
 
 void PluginEditor::paint(juce::Graphics &g) {
-  g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
-  g.setColour(juce::Colours::white);
-  g.setFont(15.0f);
-  g.drawFittedText("Hello world!", getLocalBounds(), juce::Justification::centred, 1);
+    g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
 }
 
-void PluginEditor::resized() {}
+void PluginEditor::resized() {
+    Rectangle<int> bounds = getLocalBounds();
+
+    keyboardComponent.setBounds(bounds.removeFromBottom(KEY_HEIGHT));
+
+    Rectangle<int> upperArea = bounds.removeFromTop(bounds.getHeight() * 0.5);
+    {
+        oscParametersComponent.setBounds(upperArea.removeFromLeft(280).reduced(PANEL_MARGIN));
+    }
+}

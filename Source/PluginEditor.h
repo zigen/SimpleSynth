@@ -6,6 +6,7 @@
 #define SIMPLESYNTH_PLUGINEDITOR_H
 
 #include "PluginProcessor.h"
+#include "GUI/ParametersComponent.h"
 
 class PluginEditor : public juce::AudioProcessorEditor {
  public:
@@ -20,7 +21,9 @@ class PluginEditor : public juce::AudioProcessorEditor {
  private:
   PluginProcessor &processorRef;
 
-  Slider sineWaveLevelSlider;
+  MidiKeyboardComponent keyboardComponent;
+  OscillatorParametersComponent oscParametersComponent;
+
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PluginEditor)
 };

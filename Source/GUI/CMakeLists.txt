@@ -1,0 +1,1 @@
+target_sources(SimpleSynth PRIVATE ParametersComponent.cpp ScopeComponent.cpp)
