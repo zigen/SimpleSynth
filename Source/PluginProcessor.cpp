@@ -24,8 +24,8 @@ PluginProcessor::PluginProcessor()
           },
 
           ampEnvParameters{
-                  new AudioParameterFloat("AMPENV_ATTACK", "Attack", 0.01f, 3.0f, 0.1f),
-                  new AudioParameterFloat("AMPENV_DECAY", "Decay", 0.01f, 3.0f, 0.1f),
+                  new AudioParameterFloat("AMPENV_ATTACK", "Attack", 0.01f, 6.0f, 0.1f),
+                  new AudioParameterFloat("AMPENV_DECAY", "Decay", 0.01f, 6.0f, 0.1f),
                   new AudioParameterFloat("AMPENV_SUSTAIN", "Sustain", 0.0f, 1.0f, 1.0f),
                   new AudioParameterFloat("AMPENV_RELEASE", "Release", 0.01f, 3.0f, 0.1f),
           },

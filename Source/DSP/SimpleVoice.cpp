@@ -30,7 +30,7 @@ SimpleVoice::~SimpleVoice() {}
 bool SimpleVoice::canPlaySound(SynthesiserSound *sound) { return dynamic_cast<const SimpleSound *>(sound) != nullptr; }
 
 void SimpleVoice::startNote(int midiNoteNumber, float velocity, SynthesiserSound *sound, int currentPitchWheelPosition) {
-  DBG("[StartNote] NoteNumber: " + juce::String(midiNoteNumber) + ", Velocity: " + juce::String(velocity));
+//  DBG("[StartNote] NoteNumber: " + juce::String(midiNoteNumber) + ", Velocity: " + juce::String(velocity));
   if (SimpleSound *soundForPlay = dynamic_cast<SimpleSound *>(sound)) {
     if (_velocitySensParamPtr->get()) {
       if (velocity <= 0.01f) {

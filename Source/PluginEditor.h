@@ -7,25 +7,32 @@
 
 #include "PluginProcessor.h"
 #include "GUI/ParametersComponent.h"
+#include "GUI/AmpEnvelopeComponent.h"
+#include "GUI/OscillatorParametersComponent.h"
+#include "GUI/LfoParametersComponent.h"
+#include "GUI/FilterParametersComponent.h"
 
 class PluginEditor : public juce::AudioProcessorEditor {
- public:
-  explicit PluginEditor(PluginProcessor &);
+public:
+    explicit PluginEditor(PluginProcessor &);
 
-  ~PluginEditor() override;
+    ~PluginEditor() override;
 
-  void paint(juce::Graphics &) override;
+    void paint(juce::Graphics &) override;
 
-  void resized() override;
+    void resized() override;
 
- private:
-  PluginProcessor &processorRef;
+private:
+    PluginProcessor &processorRef;
 
-  MidiKeyboardComponent keyboardComponent;
-  OscillatorParametersComponent oscParametersComponent;
+    MidiKeyboardComponent keyboardComponent;
+    OscillatorParametersComponent oscParametersComponent;
+    AmpEnvelopeParametersComponent ampEnvParametersComponent;
+    LfoParametersComponent lfoParametersComponent;
+    FilterParametersComponent filterParametersComponent;
 
 
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PluginEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PluginEditor)
 };
 
 #endif  // SIMPLESYNTH_PLUGINEDITOR_H

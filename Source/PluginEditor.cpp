@@ -16,12 +16,21 @@ namespace {
 PluginEditor::PluginEditor(PluginProcessor &p)
         : AudioProcessorEditor(p), processorRef(p),
           oscParametersComponent(&p.oscParameters),
+          ampEnvParametersComponent(&p.ampEnvParameters),
+          lfoParametersComponent(&p.lfoParameters),
+          filterParametersComponent(&p.filterParameters),
           keyboardComponent(p.getKeyboardState(), MidiKeyboardComponent::Orientation::horizontalKeyboard) {
-    setSize(500, 400);
+
+    keyboardComponent.setKeyWidth(KEY_WIDTH);
     addAndMakeVisible(oscParametersComponent);
+    addAndMakeVisible(ampEnvParametersComponent);
+    addAndMakeVisible(lfoParametersComponent);
+    addAndMakeVisible(filterParametersComponent);
     addAndMakeVisible(keyboardComponent);
 
+    setSize(960, 540 + KEY_HEIGHT);
 }
+
 PluginEditor::~PluginEditor() {}
 
 void PluginEditor::paint(juce::Graphics &g) {
@@ -36,5 +45,8 @@ void PluginEditor::resized() {
     Rectangle<int> upperArea = bounds.removeFromTop(bounds.getHeight() * 0.5);
     {
         oscParametersComponent.setBounds(upperArea.removeFromLeft(280).reduced(PANEL_MARGIN));
+        lfoParametersComponent.setBounds(upperArea.removeFromLeft(240).reduced(PANEL_MARGIN));
+        ampEnvParametersComponent.setBounds(upperArea.removeFromLeft(240).reduced(PANEL_MARGIN));
+        filterParametersComponent.setBounds(upperArea.removeFromLeft(240).reduced(PANEL_MARGIN));
     }
 }
